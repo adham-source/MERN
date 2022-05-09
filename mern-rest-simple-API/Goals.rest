@@ -1,0 +1,20 @@
+### Gel all Goals
+GET http://localhost:8000/api/goals
+
+### Set Goal
+POST http://localhost:8000/api/goals
+Content-Type: application/x-www-form-urlencoded
+
+text=My Third Goal
+
+### Get Goal
+GET http://localhost:8000/api/goals/6279283d62bea6d1e4a2cdf6
+
+### Update Goal
+Put http://localhost:8000/api/goals/6279283d62bea6d1e4a2cdf8
+
+
+
+### Delete Goal
+DELETE http://localhost:8000/api/goals/hj
+
