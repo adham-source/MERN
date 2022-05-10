@@ -1,20 +1,30 @@
 ### Gel all Goals
 GET http://localhost:8000/api/goals
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzNDJjZWM5YmNmMDI2YTYxNWY5MyIsImlhdCI6MTY1MjE5MTY5OCwiZXhwIjoxNjU0NzgzNjk4fQ.6ps9hIArMNTYibwIJHxlEphs6XZ15y6rwFUK3SaIoyo
 
 ### Set Goal
 POST http://localhost:8000/api/goals
 Content-Type: application/x-www-form-urlencoded
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzZThkZmEwM2FhN2U3MDUxOTU5YSIsImlhdCI6MTY1MjE5NDg1MiwiZXhwIjoxNjU0Nzg2ODUyfQ.f6cenLErGjgoGq1pbvZT_uch-amMBuHPCQiGgDwpHW4
 
-text=My Third Goal
+text=My amira Goal 4
 
 ### Get Goal
-GET http://localhost:8000/api/goals/6279283d62bea6d1e4a2cdf6
+GET http://localhost:8000/api/goals/627a7e5a9ed4ac17522553c5
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzNDJjZWM5YmNmMDI2YTYxNWY5MyIsImlhdCI6MTY1MjE5MTY5OCwiZXhwIjoxNjU0NzgzNjk4fQ.6ps9hIArMNTYibwIJHxlEphs6XZ15y6rwFUK3SaIoyo
+
 
 ### Update Goal
-Put http://localhost:8000/api/goals/6279283d62bea6d1e4a2cdf8
+Put http://localhost:8000/api/goals/627a7fc81b7de5874d47230b
+Content-Type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzNDJjZWM5YmNmMDI2YTYxNWY5MyIsImlhdCI6MTY1MjE5MTY5OCwiZXhwIjoxNjU0NzgzNjk4fQ.6ps9hIArMNTYibwIJHxlEphs6XZ15y6rwFUK3SaIoyo
 
+{
+    "text": "My amira Goal four"
+}
 
 
 ### Delete Goal
-DELETE http://localhost:8000/api/goals/hj
+DELETE http://localhost:8000/api/goals/627a7e5a9ed4ac17522553c5
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzZThkZmEwM2FhN2U3MDUxOTU5YSIsImlhdCI6MTY1MjE5NDg1MiwiZXhwIjoxNjU0Nzg2ODUyfQ.f6cenLErGjgoGq1pbvZT_uch-amMBuHPCQiGgDwpHW4
 

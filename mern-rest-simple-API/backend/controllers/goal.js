@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler")
-
 const Goal = require("../models/Goal")
+const User = require("../models/User")
 
 /**
  * @description Get Goals
@@ -8,7 +8,9 @@ const Goal = require("../models/Goal")
  * @access      Private
  */
 const getGoals = asyncHandler(async (req, res) => {
-  const goals = await Goal.find().sort({ createdAt: -1 }).exec()
+  const goals = await Goal.find({ user: req.user.id })
+    .sort({ createdAt: -1 })
+    .exec()
   res.status(200).json(goals)
 })
 
@@ -26,6 +28,7 @@ const setGoal = asyncHandler(async (req, res) => {
 
   const goal = await Goal.create({
     text,
+    user: req.user.id,
   })
   res.status(201).json(goal)
 })
@@ -41,6 +44,18 @@ const getGoal = asyncHandler(async (req, res) => {
   if (!goal) {
     res.status(404)
     throw new Error("Goal not found")
+  }
+
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(404)
+    throw new Error("User not found")
+  }
+
+  if (goal.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error("User not authorized")
   }
   res.status(200).json(goal)
 })
@@ -64,6 +79,18 @@ const updateGoal = asyncHandler(async (req, res) => {
     throw new Error("Goal not found")
   }
 
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(404)
+    throw new Error("User not found")
+  }
+
+  if (goal.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error("User not authorized")
+  }
+
   const updatedGoal = await Goal.findByIdAndUpdate(id, req.body, { new: true })
 
   res.status(200).json(updatedGoal)
@@ -80,6 +107,18 @@ const deleteGoal = asyncHandler(async (req, res) => {
   if (!goal) {
     res.status(404)
     throw new Error("Goal not found")
+  }
+
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(404)
+    throw new Error("User not found")
+  }
+
+  if (goal.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error("User not authorized")
   }
   await Goal.findByIdAndDelete(id)
   // await goal.remove()

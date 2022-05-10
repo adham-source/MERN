@@ -1,0 +1,23 @@
+### Register new user
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+    "name": "Amira",
+    "email": "amira@gmail.com",
+    "password": "123345678"
+}
+
+
+### Authenticate a user
+POST http://localhost:8000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "amira@gmail.com",
+    "password": "123345678"
+}
+
+### Get user data
+GET http://localhost:8000/api/users/me
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2EzNDJjZWM5YmNmMDI2YTYxNWY5MyIsImlhdCI6MTY1MjE5NDU5NywiZXhwIjoxNjU0Nzg2NTk3fQ.ZssbQbd6OciCNUl4ekzzo3mkM98q7iDvyVS2kLydgx0
