@@ -1,0 +1,137 @@
+:root {
+  --font-family-ar: "Cairo", sans-serif;
+  --font-family-en: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-en);
+  height: 100vh;
+}
+
+p {
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  transition: all 0.3s linear;
+  font-size: 1.2rem;
+}
+
+a:hover {
+  color: #777;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.heading,
+.form {
+  text-align: center;
+}
+
+header {
+  background-color: aliceblue;
+}
+
+header .navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+
+/* Form */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form {
+  max-width: 500px;
+  margin: 1rem auto;
+  padding: 1rem 0.5rem;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group input {
+  height: 45px;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  font-size: 1.1rem;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s linear;
+}
+
+.form-group input:focus {
+  border-color: rgb(132, 184, 230);
+  box-shadow: none;
+}
+
+.form-group .btn {
+  height: 45px;
+  width: 100%;
+  background-color: rgb(132, 184, 230);
+  font-size: 1.1rem;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.form-group .btn:hover {
+  box-shadow: none;
+  background-color: rgb(118, 176, 228);
+}
