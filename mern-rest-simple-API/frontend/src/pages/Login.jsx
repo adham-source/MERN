@@ -27,7 +27,7 @@ const Login = () => {
   useEffect(() => {
     if (isError) toast.error(message)
 
-    if (isSuccess || user) navigate("/")
+    if (isSuccess || user) navigate("/", { replace: true })
 
     dispatch(reset())
   }, [user, isError, isSuccess, message, dispatch, navigate])
@@ -45,7 +45,6 @@ const Login = () => {
       email,
       password,
     }
-
     dispatch(login(userData))
   }
 

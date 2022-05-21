@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { FaSignInAlt, FaUser, FaSignOutAlt } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
 import { logout, reset } from "../features/auth/authSlice"
+import { reset as resetGoal } from "../features/goals/goalSlice"
 
 const Header = () => {
   const navigate = useNavigate()
@@ -10,9 +11,11 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth)
 
   const onLogout = () => {
+    dispatch(resetGoal()) // This adde to reset goal = goals : []
     dispatch(logout())
     dispatch(reset())
-    navigate("/login", { replace: true })
+
+    navigate("/login")
   }
 
   return (

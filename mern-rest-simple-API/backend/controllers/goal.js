@@ -26,6 +26,11 @@ const setGoal = asyncHandler(async (req, res) => {
     throw new Error("This field is required .")
   }
 
+  if (text.length < 5) {
+    res.status(400)
+    throw new Error("Text is shorter than the minimum allowed length (5).")
+  }
+
   const goal = await Goal.create({
     text,
     user: req.user.id,
@@ -71,6 +76,11 @@ const updateGoal = asyncHandler(async (req, res) => {
   if (!text) {
     res.status(400)
     throw new Error("This field is required .")
+  }
+
+  if (text.length < 5) {
+    res.status(400)
+    throw new Error("Text is shorter than the minimum allowed length (5).")
   }
 
   const goal = await Goal.findById(id)

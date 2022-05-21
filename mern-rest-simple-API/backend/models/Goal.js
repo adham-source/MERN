@@ -11,6 +11,7 @@ const goalSchema = mongoose.Schema(
       type: String,
       required: [true, "This field is required ."],
       trim: true,
+      minLength: 5,
     },
   },
   {

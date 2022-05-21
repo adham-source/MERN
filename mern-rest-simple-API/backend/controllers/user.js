@@ -43,12 +43,13 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error("Invalid user data")
   }
-  res.status(201).json({
-    _id: user.id,
-    name: user.name,
-    email: user.email,
-    token: generateToken(user._id),
-  })
+  res.status(201).json()
+  // .json({
+  //   // _id: user.id,
+  //   // name: user.name,
+  //   // email: user.email,
+  //   // token: generateToken(user._id),
+  // })
 })
 
 /**
@@ -88,8 +89,7 @@ const authUser = asyncHandler(async (req, res) => {
  * @access      Private
  */
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id)
-  res.json({ _id, name, email })
+  res.json(req.user)
 })
 
 const generateToken = (id) => {

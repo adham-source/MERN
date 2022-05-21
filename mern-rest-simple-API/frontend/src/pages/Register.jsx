@@ -43,6 +43,7 @@ const Register = () => {
 
     if (password !== confirmPassword)
       return toast.error("Passwords do not match")
+
     const userData = {
       name,
       email,
