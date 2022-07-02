@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 0.9rem;
+  background-color: gainsboro;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(87, 85, 85);
+  border-radius: 0.5rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(51, 48, 48);
+}
+
+.related_tours_title {
+  position: relative;
+}
+
+.related_tours_title::after,
+.related_tours_title::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(51, 45, 45);
+  width: 30%;
+  height: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.related_tours_title::after {
+  right: 0;
+}
+
+.related_tours_title::before {
+  left: 0;
+}

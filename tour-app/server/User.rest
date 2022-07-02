@@ -1,0 +1,15 @@
+### Create user
+POST http://localhost:4000/users/register
+Content-Type: application/json
+
+{
+    "":""
+}
+
+### Login user
+POST http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+    ":":""
+}
