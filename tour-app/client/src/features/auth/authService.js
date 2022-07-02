@@ -1,23 +1,12 @@
 import axios from "axios"
 
+const DEV_ENV = process.env.NODE_ENV !== "production"
+
+const { REACT_APP_BEV_API, REACT_APP_PROD_API } = process.env
+
 const API_URL = axios.create({
-  baseURL: "http://localhost:4000",
-  // headers: {
-  //   Authorization:
-  //     `Bearer ` + JSON.parse(localStorage.getItem("profile")).token,
-  // },
+  baseURL: `${DEV_ENV ? REACT_APP_BEV_API : REACT_APP_PROD_API}`,
 })
-
-// const user = JSON.parse(localStorage.getItem("profile"))
-
-// API_URL.interceptors.request.use((config) => {
-//   if (user) {
-//     config.headers["x-auth-token"] = `Bearer ${user.token}`
-//   }
-//   console.log(config.headers, user)
-
-//   return config
-// })
 
 const register = (formData) => API_URL.post("/users/register", formData)
 

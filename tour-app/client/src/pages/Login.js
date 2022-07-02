@@ -29,6 +29,12 @@ const Login = () => {
   const navigate = useNavigate()
   const { isLoading, error } = useSelector((state) => ({ ...state.auth }))
 
+  const DEV_ENV = process.env.NODE_ENV !== "production"
+
+  const { REACT_APP_DEV_CLIENT_ID, REACT_APP_PROD_CLIENT_ID } = process.env
+
+  const clientId = REACT_APP_DEV_CLIENT_ID || REACT_APP_PROD_CLIENT_ID
+
   useEffect(() => {
     error &&
       toast.error(
@@ -130,7 +136,7 @@ const Login = () => {
           </MDBValidation>
 
           <GoogleLogin
-            clientId={process.env.REACT_APP_CLIENT_ID}
+            clientId={clientId}
             render={(renderProps) => (
               <MDBBtn
                 className="mt-3 w-100"

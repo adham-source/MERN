@@ -4,8 +4,11 @@ const express = require("express")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const cors = require("cors")
+// const path = require("path")
 
 const app = express()
+const PORT = process.env.PORT || 8000
+const MONGO_URI = process.env.MONGO_URI
 
 app.use(morgan("dev"))
 app.use(cors()) //{origin: "*",}
@@ -16,8 +19,9 @@ app.use(express.urlencoded({ limit: "30mb", extended: true })) // {limit: "30mb"
 app.use("/users", require("./routes/user"))
 app.use("/tours", require("./routes/tour"))
 
-const PORT = process.env.PORT || 8000
-const MONGO_URI = process.env.MONGO_URI
+app.get("/", (req, res) => {
+  res.send("Welcome api alyasin tours")
+})
 
 const main = async () => {
   try {

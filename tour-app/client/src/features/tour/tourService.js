@@ -1,7 +1,11 @@
 import axios from "axios"
 
+const DEV_ENV = process.env.NODE_ENV !== "production"
+
+const { REACT_APP_BEV_API, REACT_APP_PROD_API } = process.env
+
 const API_URL = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: `${DEV_ENV ? REACT_APP_BEV_API : REACT_APP_PROD_API}`,
 })
 
 API_URL.interceptors.request.use((config) => {
@@ -15,7 +19,7 @@ API_URL.interceptors.request.use((config) => {
 const getTours = (page) => API_URL.get(`/tours?page=${page}`)
 const getTour = (id) => API_URL.get(`/tours/${id}`)
 const getToursBySearch = (searchQuery) =>
-  API_URL.get(`/tours/search?searchQuery=${searchQuery}`)
+  API_URL.get(`/tours/search/?searchQuery=${searchQuery}`)
 const getToursByTag = (tag) => API_URL.get(`/tours/tags/${tag}`)
 const getRelatedTours = (tags) => API_URL.post("/tours/related", tags)
 

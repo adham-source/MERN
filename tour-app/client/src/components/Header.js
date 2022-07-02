@@ -43,7 +43,7 @@ const Header = () => {
     event.preventDefault()
     if (search) {
       dispatch(getToursBySearch(search))
-      navigate(`/tours/search?searchQuery=${search}`)
+      navigate(`/tours/search/?searchQuery=${search}`)
       setSearch("")
     } else {
       navigate("/")
