@@ -9,8 +9,8 @@ const API_URL = axios.create({
 })
 
 API_URL.interceptors.request.use((config) => {
-  const token = JSON.parse(localStorage.getItem("profile")).token
-  if (token) {
+  if (localStorage.getItem("profile")) {
+    const token = JSON.parse(localStorage.getItem("profile")).token
     config.headers["x-auth-token"] = `Bearer ${token}`
   }
   return config

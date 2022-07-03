@@ -29,7 +29,7 @@ const App = () => {
         <Header />
         <ToastContainer />
         <Routes>
-          <Route path="/" index element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/tours/search" element={<Home />} />
           <Route path="/tours/tags/:tag" element={<TagTours />} />
 

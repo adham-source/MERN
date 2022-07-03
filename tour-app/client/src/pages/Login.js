@@ -33,7 +33,7 @@ const Login = () => {
 
   const { REACT_APP_DEV_CLIENT_ID, REACT_APP_PROD_CLIENT_ID } = process.env
 
-  const clientId = REACT_APP_DEV_CLIENT_ID || REACT_APP_PROD_CLIENT_ID
+  const clientId = DEV_ENV ? REACT_APP_DEV_CLIENT_ID : REACT_APP_PROD_CLIENT_ID
 
   useEffect(() => {
     error &&

@@ -6,6 +6,7 @@ export const getTours = createAsyncThunk(
   async (page, { rejectWithValue }) => {
     try {
       const response = await tourService.getTours(page)
+      console.log(response.data)
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.data)
