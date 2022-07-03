@@ -1,2 +1,3 @@
 
 ### Get all tours
+GET http://localhost:4000/tours/search?searchQuery=Beauty

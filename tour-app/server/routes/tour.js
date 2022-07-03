@@ -4,8 +4,9 @@ const { tourCreateValidation } = require("../middlewares/tour")
 const { auth } = require("../middlewares/auth")
 const {
   getTours,
-  getTour,
   getToursBySearch,
+  getTour,
+
   getToursByTag,
   getRelatedTours,
 
@@ -18,9 +19,10 @@ const {
 } = require("../controllers/tour")
 
 router.get("/", getTours)
+router.get("/search", getToursBySearch)
+
 router.get("/:id", getTour)
 
-router.get("/search", getToursBySearch)
 router.get("/tags/:tag", getToursByTag)
 router.post("/related", getRelatedTours)
 

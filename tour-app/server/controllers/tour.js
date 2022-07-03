@@ -30,6 +30,24 @@ const getTours = async (req, res) => {
 }
 
 /**
+ * @Description Get all tour from database by user search
+ * @Method      GET
+ * @Router      /tours/search?searchQuery=any title
+ * @Access      Public
+ */
+
+const getToursBySearch = async (req, res) => {
+  const { searchQuery } = req.query
+  try {
+    const title = new RegExp(searchQuery, "i")
+    const tours = await Tour.find({ title }).exec()
+    res.json(tours)
+  } catch (error) {
+    res.status(500).json({ message: `${error.message}` })
+  }
+}
+
+/**
  * @Description Get tour from database
  * @Method      GET
  * @Router      /tours/:id
@@ -46,24 +64,6 @@ const getTour = async (req, res) => {
     if (!tour || tour == null)
       return res.status(404).json({ message: "Not founded tour !" })
     res.json(tour)
-  } catch (error) {
-    res.status(500).json({ message: `${error.message}` })
-  }
-}
-
-/**
- * @Description Get all tour from database by user search
- * @Method      GET
- * @Router      /tours/search?searchQuery=any title
- * @Access      Public
- */
-
-const getToursBySearch = async (req, res) => {
-  const { searchQuery } = req.query
-  try {
-    const title = new RegExp(searchQuery, "i")
-    const tours = await Tour.find({ title }).exec()
-    res.json(tours)
   } catch (error) {
     res.status(500).json({ message: `${error.message}` })
   }
@@ -251,8 +251,9 @@ const deleteTour = async (req, res) => {
 
 module.exports = {
   getTours,
-  getTour,
   getToursBySearch,
+  getTour,
+
   getToursByTag,
   getRelatedTours,
 

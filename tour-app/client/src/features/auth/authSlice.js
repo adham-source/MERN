@@ -124,33 +124,6 @@ const authSlice = createSlice({
         state.user = null
       })
   },
-  // extraReducers: {
-  //   [register.pending]: (state) => {
-  //     state.isLoading = true
-  //   },
-  //   [register.fulfilled]: (state, action) => {
-  //     state.isLoading = false
-  //     state.user = action.payload
-  //   },
-  //   [register.rejected]: (state, action) => {
-  //     state.isLoading = false
-  //     state.user = null
-  //     state.error = action.payload.message
-  //   },
-  //   [login.pending]: (state) => {
-  //     state.isLoading = true
-  //   },
-  //   [login.fulfilled]: (state, action) => {
-  //     state.isLoading = false
-  //     localStorage.setItem("profile", JSON.stringify({ ...action.payload }))
-  //     state.user = action.payload
-  //   },
-  //   [login.rejected]: (state, action) => {
-  //     state.isLoading = false
-  //     state.user = null
-  //     state.error = action.payload.message
-  //   },
-  // },
 })
 
 export const { setUser, setLogout } = authSlice.actions

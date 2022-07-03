@@ -6,7 +6,6 @@ export const getTours = createAsyncThunk(
   async (page, { rejectWithValue }) => {
     try {
       const response = await tourService.getTours(page)
-      console.log(response.data)
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.data)
@@ -26,8 +25,8 @@ export const getTour = createAsyncThunk(
   }
 )
 
-export const getToursBySearch = createAsyncThunk(
-  "tour/getToursBySearch",
+export const searchTours = createAsyncThunk(
+  "tour/searchTours",
   async (searchQuery, { rejectWithValue }) => {
     try {
       const response = await tourService.getToursBySearch(searchQuery)
@@ -145,37 +144,6 @@ const tourSlice = createSlice({
       state.currentPage = action.payload
     },
   },
-  // extraReducers: {
-  //   [getTours.pending]: (state) => {
-  //     state.isLoading = true
-  //   },
-  //   [getTours.fulfilled]: (state, action) => {
-  //     state.isLoading = false
-  //     state.tours = action.payload.tours
-  //     state.numberOfPages = action.payload.numberOfPages
-  //     state.currentPage = action.payload.currentPage
-  //   },
-  //   [getTours.rejected]: (state, action) => {
-  //     state.isLoading = false
-  //     state.error = action.payload.message
-  //   },
-
-  //   [likeTour.pending]: () => {},
-  //   [likeTour.fulfilled]: (state, action) => {
-  //     state.isLoading = false
-  //     const {
-  //       arg: { _id },
-  //     } = action.meta
-  //     if (_id) {
-  //       state.tours = state.tours.map((tour) =>
-  //         tour._id === _id ? action.payload : tour
-  //       )
-  //     }
-  //   },
-  //   [likeTour.rejected]: (state, action) => {
-  //     state.error = action.payload.message
-  //   },
-  // },
   extraReducers: (builder) => {
     builder
 
@@ -204,14 +172,14 @@ const tourSlice = createSlice({
         state.error = action.payload.message
       })
 
-      .addCase(getToursBySearch.pending, (state) => {
+      .addCase(searchTours.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getToursBySearch.fulfilled, (state, action) => {
+      .addCase(searchTours.fulfilled, (state, action) => {
         state.isLoading = false
         state.tours = action.payload
       })
-      .addCase(getToursBySearch.rejected, (state, action) => {
+      .addCase(searchTours.rejected, (state, action) => {
         state.error = action.payload.message
       })
 
