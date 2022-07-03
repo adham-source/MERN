@@ -5,11 +5,11 @@ import CardTour from "../components/CardTour"
 import { getTours, setCurrentPage } from "../features/tour/tourSlice"
 import Spinner from "../components/Spinner"
 import Pagination from "../components/Pagination"
-// import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
-// const useQuery = () => {
-//   return new URLSearchParams(useLocation().search)
-// }
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 const Home = () => {
   const { tours, currentPage, numberOfPages, isLoading } = useSelector(
@@ -20,9 +20,9 @@ const Home = () => {
 
   const dispatch = useDispatch()
 
-  // const query = useQuery()
-  // const searchQuery = query.get("searchQuery")
-  // const location = useLocation()
+  const query = useQuery()
+  const searchQuery = query.get("searchQuery")
+  const location = useLocation()
 
   useEffect(() => {
     dispatch(getTours(currentPage))
@@ -35,23 +35,23 @@ const Home = () => {
   return (
     <main className="mt-5 py-5 bg-light">
       <MDBContainer>
-        {tours.length === 0 && (
+        {tours.length === 0 && location === "/" && (
           <MDBTypography className="text-center mb-0" tag="h2">
             No tours found
           </MDBTypography>
         )}
 
-        {/* {tours.length === 0 && location !== "/" && (
+        {tours.length === 0 && location !== "/" && (
           <MDBTypography className="text-center mb-0" tag="h2">
             We couldn't find ann title for "{searchQuery}"
           </MDBTypography>
-        )} */}
+        )}
 
         <MDBRow>
           {tours &&
             tours.map((tour, index) => <CardTour key={index} {...tour} />)}
         </MDBRow>
-        {tours?.length > 0 && (
+        {tours?.length > 0 && location === "/" && (
           <Pagination
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}

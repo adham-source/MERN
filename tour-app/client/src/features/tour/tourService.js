@@ -17,9 +17,10 @@ API_URL.interceptors.request.use((config) => {
 })
 
 const getTours = (page) => API_URL.get(`/tours?page=${page}`)
-const getTour = (id) => API_URL.get(`/tours/${id}`)
 const getToursBySearch = (searchQuery) =>
   API_URL.get(`/tours/search?searchQuery=${searchQuery}`)
+const getTour = (id) => API_URL.get(`/tours/${id}`)
+
 const getToursByTag = (tag) => API_URL.get(`/tours/tags/${tag}`)
 const getRelatedTours = (tags) => API_URL.post("/tours/related", tags)
 
@@ -33,8 +34,9 @@ const deleteTour = (id) => API_URL.delete(`/tours/${id}`)
 
 const tourService = {
   getTours,
-  getTour,
   getToursBySearch,
+  getTour,
+
   getToursByTag,
   getRelatedTours,
 

@@ -14,7 +14,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { logout, setLogout } from "../features/auth/authSlice"
-import { searchTours } from "../features/tour/tourSlice"
+import { getToursBySearch } from "../features/tour/tourSlice"
 import jwt_decode from "jwt-decode"
 
 const Header = () => {
@@ -42,7 +42,7 @@ const Header = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (search) {
-      dispatch(searchTours(search))
+      dispatch(getToursBySearch(search))
       navigate(`/tours/search?searchQuery=${search}`)
       setSearch("")
     } else {

@@ -13,11 +13,11 @@ export const getTours = createAsyncThunk(
   }
 )
 
-export const getTour = createAsyncThunk(
-  "tour/getTour",
-  async (id, { rejectWithValue }) => {
+export const getToursBySearch = createAsyncThunk(
+  "tour/getToursBySearch",
+  async (searchQuery, { rejectWithValue }) => {
     try {
-      const response = await tourService.getTour(id)
+      const response = await tourService.getToursBySearch(searchQuery)
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.message)
@@ -25,11 +25,11 @@ export const getTour = createAsyncThunk(
   }
 )
 
-export const searchTours = createAsyncThunk(
-  "tour/searchTours",
-  async (searchQuery, { rejectWithValue }) => {
+export const getTour = createAsyncThunk(
+  "tour/getTour",
+  async (id, { rejectWithValue }) => {
     try {
-      const response = await tourService.getToursBySearch(searchQuery)
+      const response = await tourService.getTour(id)
       return response.data
     } catch (error) {
       return rejectWithValue(error.response.message)
@@ -161,6 +161,17 @@ const tourSlice = createSlice({
         state.error = action.payload.message
       })
 
+      .addCase(getToursBySearch.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getToursBySearch.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.tours = action.payload
+      })
+      .addCase(getToursBySearch.rejected, (state, action) => {
+        state.error = action.payload.message
+      })
+
       .addCase(getTour.pending, (state) => {
         state.isLoading = true
       })
@@ -169,17 +180,6 @@ const tourSlice = createSlice({
         state.tour = action.payload
       })
       .addCase(getTour.rejected, (state, action) => {
-        state.error = action.payload.message
-      })
-
-      .addCase(searchTours.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(searchTours.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.tours = action.payload
-      })
-      .addCase(searchTours.rejected, (state, action) => {
         state.error = action.payload.message
       })
 
